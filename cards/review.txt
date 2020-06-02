@@ -1,0 +1,10 @@
+Diretiva *ngFor="let post of posts" -> Expoe em forma de componentização, um laço FOR,
+da forma com que, a depender do componente e suas propriedades, serão gerados repetidos
+componentes de acordo com a quantidade de post dentro de posts. Se posts é um array,
+e possui 6 objetos, serão gerados 6 componentes pela Diretiva *ngFor. E todas as propriedade
+dos objetos dentro de posts serão expostos não mais pelo indice: post[0], mas sim diretamente
+como: post.username; post.imageUrl...
+
+A diretiva não trata somente atribulos, valores estáticos/dinâmicos mas também funções.
+caso: *ngFor="let post of getPosts()" é completamente reconhecido. Uma vez que a função
+getPosts() retorna um array de objetos, cairá no mesmo caso de cima.
