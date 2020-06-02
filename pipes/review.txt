@@ -1,0 +1,7 @@
+# Pipes
+
+- Função que formata o dado para ser usado em um template;
+- Somente utilizada em templates;
+- Existem alguns pipes do Angular (angular.io/api?type=pipe);
+- Pipes podem ser criadas facilmente;
+- Você não é obrigado a utiliziar pipes, mas é recomendado.
