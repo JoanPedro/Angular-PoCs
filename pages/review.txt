@@ -1,0 +1,11 @@
+Diretiva ngFor: Pode ser utilizada para gerar múltiplos componentes.
+Com *ngFor="let post of post; index as i"
+- Intrisecamente utiliza os índices i, mas é possível utilizar os i como parâmetro.
+
+Diretiva [ngClass]="{'classNave' = SomeLogic}"
+É possível utilizar a diretiva ngClass para definir algumas classes de componentes.
+Facilmente manipulável as classes de componentes de frameworks como o bootstrap.
+- Por exemplo, o componente NAV tem a classe 'active':
+[ngClass]="active: SomeLogic" -> Ativa a página atual com alguma lógica.
+- O ngClass não opera somente com lógica, pode utilizar alguma função definida no
+documento TS do componente.
