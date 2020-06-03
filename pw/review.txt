@@ -1,7 +1,11 @@
 (1) Event Binding:
-<button (click)=”onButtonClick()”> → Informa ao Angular para monitorar o evento de Click no respectivo botao. Ao ser clicado, chamará a função “onButtonClick()” definida no arquivo .ts do componente.
+<button (click)=”onButtonClick()”> → Informa ao Angular para monitorar o evento
+de Click no respectivo botao. Ao ser clicado, chamará a função “onButtonClick()”
+definida no arquivo .ts do componente.
 ( ) ← Sintaxe para Event binding. Cada Componente HTML tem seus próprios eventos.
-<input (input)=’onChangeLength($event.target.value)’ />  → Monitora por binding o evento ‘Target value’ do componente Input. Desta forma, dá para fazer um two-way data binding or one-way. Por esse evento é retornado por padrão em formato string.
+<input (input)=’onChangeLength($event.target.value)’ />  → Monitora por binding
+o evento ‘Target value’ do componente Input. Desta forma, dá para fazer um two-way
+data binding or one-way. Por esse evento é retornado por padrão em formato string.
 
 (2) class startup
 Em uma classe:
@@ -18,18 +22,29 @@ class App {
 
 (3) Property Binding:
 <input [value]=”password” />
-input possui uma propriedade ‘value’ que faz com que o valor mostrado dentro dele seja setado. Desta forma, se realizar um binding na propriedade ‘value’ com algum tratamento definido no arquivo .ts, o mesmo será setado.
-Então, no exemplo: Existe uma variável chamada ‘password’ dentro do arquivo .ts que será mostrada no input.
+Input possui uma propriedade ‘value’. Essa propriedade faz com que o valor mostrado dentro dele
+seja setado. Desta forma, se realizar um binding na propriedade ‘value’ com algum
+tratamento definido no arquivo .ts, o mesmo será setado. Como o src de imagem:
+[src]="path/da/imagem ou url.da.imagem".
+Então, no exemplo: Existe uma variável chamada ‘password’ dentro do arquivo .ts
+que será mostrada no input.
 [ ] ← Sintaxe para Binding property.
 
-Obs. É possível também passar para a propriedade ‘value’ uma função: <input [value]=’getPassword()’ />. Só que desta forma, a função getPassword definida no arquivo .ts deverá retornar em si o password. Como por exemplo, ‘return this.password’
+Obs. É possível também passar para a propriedade ‘value’ uma função:
+<input [value]=’getPassword()’ />. Só que desta forma, a função getPassword definida
+no arquivo .ts deverá retornar em si o password. Como por exemplo, ‘return this.password’
 
 
 
 (4) String binding
-sintaxe: {{ password }} ← Interpolação de strings. Será detectado como um código que deverá ser definido dentro do arquivo .ts. Como no exemplo, irá printar na tela o valor do password.
-Também pode ser utilizada com métodos {{ getName() }} se dentro do arquivo .ts existir uma função definida com getName() e retornar por exemplo, ‘Joan’, será exibido no HTML exatamente o retorno da função getName() → Joan.
+sintaxe: {{ password }} ← Interpolação de strings. Será detectado como um código
+que deverá ser definido dentro do arquivo .ts. Como no exemplo, irá printar na
+tela o valor do password.
+Também pode ser utilizada com métodos {{ getName() }} se dentro do arquivo .ts
+existir uma função definida com getName() e retornar por exemplo, ‘Joan’, será
+exibido no HTML exatamente o retorno da função getName() → Joan.
 
 (5) Conditional Rendering – Diretiva Estrutural
-sintaxe: *ngIf=” ” ← Diretiva para Mostar/Esconder algum componente. O valor deve ser resolvido para um boolean (Verdadeiro ou Falso).
+sintaxe: *ngIf=” ” ← Diretiva para Mostar/Esconder algum componente. O valor deve
+ser resolvido para um boolean (Verdadeiro ou Falso).
 
