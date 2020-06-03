@@ -1,8 +1,18 @@
-<nav>
+<!-- [ngClass]
+  Nativamente o angular já possui o [ngClass]. Desta forma, ao invés de
+  utilizar appClass que foi contruido, substituir por [ngClass] (Consultar documentação)
+-->
+
+<!-- *ngFor
+  Nativamente o angular possui o *ngFor. desta forma, ao invés de utilizar o appTimes
+  utilizar o *ngFor="let image of images; index as i".
+-->
+
+  <nav>
   <ul class="pagination">
     <li
       class="page-item"
-      [ngClass]="{ disabled: currentPage === 0 }"
+      [appClass]="{ disabled: currentPage === 0 }"
       (click)="currentPage = currentPage -1"
     >
       <a class="page-link">Previous</a>
@@ -10,17 +20,19 @@
 <!-- Cria páginas de navegação de acordo com a quantidade de itens na propriedade
 images dentro do component.ts. O index é identificado como 'i', e a depender da página
 o i é acompanhado pelo currentPage. -->
+    <ng-container *appTimes="images.length; let i = index" >
+      <li
+        class="page-item"
+        [appClass]="{ active: i === currentPage }"
+        *ngIf="checkWindowIndex(i)"
+      >
+  <!-- Ou let i = index; ngClass Lógica para marcação de ativado do componente de paginação -->
+        <a (click)="currentPage = i" class="page-link">{{ i + 1 }}</a>
+      </li>
+    </ng-container>
     <li
       class="page-item"
-      *ngFor="let image of images; index as i"
-      [ngClass]="{ active: i === currentPage }"
-    >
-<!-- Ou let i = index; ngClass Lógica para marcação de ativado do componente de paginação -->
-      <a (click)="currentPage = i" class="page-link">{{ i + 1 }}</a>
-    </li>
-    <li
-      class="page-item"
-      [ngClass]="{ disabled: currentPage === images.length -1 }"
+      [appClass]="{ disabled: currentPage === images.length -1 }"
       (click)="currentPage = currentPage +1"
     >
       <a class="page-link">Next</a>
@@ -30,5 +42,5 @@ o i é acompanhado pelo currentPage. -->
 
 <div>
   <h4>{{ images[currentPage].title }}</h4>
-  <img [src]="images[currentPage].url" alt="" />
+  <img [src]="images[currentPage].url" >
 </div>

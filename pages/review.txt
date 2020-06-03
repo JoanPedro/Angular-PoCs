@@ -9,3 +9,49 @@ Facilmente manipulável as classes de componentes de frameworks como o bootstrap
 [ngClass]="active: SomeLogic" -> Ativa a página atual com alguma lógica.
 - O ngClass não opera somente com lógica, pode utilizar alguma função definida no
 documento TS do componente.
+
+O componente ng-container só existe para evitar a utilização de múltiplos bindings
+em um único elemento. Ao invés de criar uma <div /> arbitrária, utilizaria em
+essência o <ng-container > </ng-container> para somente evitar a duplicação de
+bindings. Com no exemplo, se utiliza-se uma div arbitrária para contornar o problema
+de múltiplos bindings, o bootstrap quebraria o layout. Desta forma, utiliza-se o
+ng-container.
+
+Diretiva ngSwitch funciona basicamente com um switch/case padrão. Onde o componente
+será renderizado de acordo com as escolhas.
+          [ngSwitch]="Lógica"
+            *ngSwitchCase="Lógica"
+            *ngSwitchCase="Lógica2"
+            ...
+            *ngSwitchDefault
+              ->
+
+Criando Diretiva: ng g directive nameOProprierty Directive
+
+Criando Diretiva de Propriedades [ngClass]:
+
+Com o Decorator { Input } -> É possível fazer com que um componente filho receba
+um parâmetro do componente pai.
+
+Por exemplo: <app-bar [title]=" 'Snowy Mountain' "></app-bar>
+
+No componente filho .ts:
+
+import { Input } from 'angular';
+
+class ChildComponent {
+  @Input() title: string;
+          ou
+  @Input('nameOfDirective') set nameOfWhatYouDoing()...
+}
+
+Criando Diretiva Estrutural *ngFor:
+
+ViewContainerRef: Refere-se ao elemento (Tag HTML) a diretiva será aplicada.
+TemplateRef: Refere-se a qualquer elemento que será inserido dentro do ViewContainerRef.
+
+  Será repetida 5* o Li dentro do UL.
+  <ul *appTimes = 5 >
+    <li> Hi, im here </li>
+  </ul>
+
