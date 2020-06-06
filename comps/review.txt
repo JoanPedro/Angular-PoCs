@@ -69,3 +69,17 @@ por exibir os componentes definidos nos respectivos Routing Module.
 
 routerLink -> Ao invés de href para navegar entre componentes roteados.
 routerLinkActive -> Para fazer a marcação de qual componente roteado está ativo.
+
+  -> Sobre Roteamento não Lógico:
+    - Quando é necessário gerar componentes que não tem sentido ser roteado pela
+    lógica de rotas, gera-se componentes sem o sufixo --routing. Desta forma, o Angular
+    não vai adicionar automaticamente esses componentes dentro do sistema de rotas. Logo,
+    desta forma recomenda-se associar essas rotas dentro do 'app-routing.module.ts'
+    -> Então dentro do app-routing.module:
+      - Para Home: { path: '', component: HomeComponent }
+      - Para NotFound: { path: '**', component: NotFoundComponent }
+    -> OBS: Para o funcionamento correto dos componentes com lógica e sem lógia de roteamento,
+    é necessário que, dentro do app.module.ts:
+      Dentro dos imports, o AppRoutingModule seja o ultima a ser importado. Visto que,
+      ele receberá rotas sem lógica. Caso fosse o primeiro, rotas como o NotFound ofuscaria
+      todas as outras, sendo sempre renderizado.
