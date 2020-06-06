@@ -1,0 +1,35 @@
+Gerar novos módulos:
+
+- ng g m Module_Name --routing ( --routing: Permite que o módulo seja roteado.)
+( Routed Modules ).
+
+  - A partir do momento que o Angular cria o Routed Modules, ele cria dentro do
+  módulo solicitado o Routing Module (Module_Name-routing.module.ts)
+
+Tipos de módulos:
+
+-> Domain: Agrupa todos os componentes necessários para implementar uma única feature;
+-> Routed: Semelhante ao módulo 'Domain', mas esses componentes estão vinculados
+às rotas (exibidas apenas quando o usuário está em um endereço específico);
+-> Routing: Define regras de rotas (Ex: mostre o componente Todo List quando
+um usuário estiver em uma rota de '/ todos');
+-> Services: Define Services que serão utilizados in diversas partes da aplicação;
+-> Widget: Define alguns componentes reutilizáveis que serão utilizados em multiplos
+outros componentes.
+
+Estratégia:
+- Cada Módulo deve possuir seus componentes, e o componente Pai (app Module) deve
+renderizar todos eles.
+- Componentes dentro de módulos específicos só podem ser acessados pelos próprios
+módulos. Para ser acessado por outros módulos e externamente, é necessários exportar
+os componentes a partir do seu módulo.
+
+Propriedades:
+
+-> Declartions: Lista de componentes, pipes, diretivas que são criadas neste módulo.
+-> Imports: Lista de outros módulos que este 'módulo' depende uma vez.
+-> Exports: Lista de componentes, pipes, diretivas que este 'módulo' torna "público/disponível"
+para fora, ou seja, para serem utilizados em outros módulos.
+-> Providers: Caminho ANTIGO para conecção de módulos e serviços.
+-> Bootstrap: Usado pelo AppModule somente para declarar qual componente irá mostrar primeiro.
+
