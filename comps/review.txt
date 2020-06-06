@@ -22,7 +22,10 @@ Estratégia:
 renderizar todos eles.
 - Componentes dentro de módulos específicos só podem ser acessados pelos próprios
 módulos. Para ser acessado por outros módulos e externamente, é necessários exportar
-os componentes a partir do seu módulo.
+os componentes a partir do seu módulo (Simplesmente exportar e importar dentro do App Module ou
+qualquer outro 'Módulo'. Ou, ao invés de exportar, definir um component roteado, e a partir do
+'componentNome-Routing-Module' definir dentro de suas Rotas o Path ('/nomeDaRota') que será atribuido e
+qual componente será definido para ele).
 
 Propriedades:
 
@@ -33,3 +36,36 @@ para fora, ou seja, para serem utilizados em outros módulos.
 -> Providers: Caminho ANTIGO para conecção de módulos e serviços.
 -> Bootstrap: Usado pelo AppModule somente para declarar qual componente irá mostrar primeiro.
 
+Routing:
+
+-> Para rotear um componente e ser acessível somente em uma específica rota, é necessário
+realizar o roteamento dele dentro do seu componente de rotas, definindo: path e componente que será renderizado.
+Ex. path: 'element', component: ElementComponent. Desta forma, o component ElementComponent será
+renderizado a partir da rota /element.
+
+________________________________________________________________________________
+
+Overview:
+
+- Módulo Pai: AppModule
+  Componente do Módulo Pai: AppComponent
+
+- Módulos Filhos: ElementsModule e CollectionsModule
+  Componentes dos Módulos Filhos: ElementsHomeComponent e CollectionsHomeComponent
+    - Roteamento (Elements/Collections Routing Module)
+      path: 'elements', component: 'ElementsComponent'
+      path: 'collections', component: 'CollectionsComponent'
+
+Ou seja:
+
+1. ElementsModule (Possui um ElementHomeComponent e um ElementsRouting)
+2. ElementsRouting Module define o path (página que será disponibilizado '/elements' e
+também qual component será renderizado: ElementComponent.)
+3. No AppComponent (Component PAI) define um '<route-outlet></route-outlet>' que será o responsável
+por exibir os componentes definidos nos respectivos Routing Module.
+4. No AppModule.ts Importa o devido Módulo e define ele no @ngModule.
+
+--
+
+routerLink -> Ao invés de href para navegar entre componentes roteados.
+routerLinkActive -> Para fazer a marcação de qual componente roteado está ativo.
