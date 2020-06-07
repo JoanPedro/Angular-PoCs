@@ -126,3 +126,8 @@ de Roteamento que segue:
       somente como: ''. Vazio!
 
 
+________________________________________________________________________________
+
+ -> Ao invés de utilizar property binds com elementos simples, é possível utilizar
+    a diretiva <ng-content /> que irá carregar exatamente o conteúdo especificado
+    no módulo compartilhado. Uma alternativa ao @Input e Bindings.
