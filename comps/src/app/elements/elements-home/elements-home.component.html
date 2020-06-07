@@ -1,5 +1,25 @@
-<!-- <app-divider  [topTitle]="'Placeholder Component'"></app-divider> -->
-<app-divider>
-  <ng-content></ng-content>
-</app-divider>
-<app-placeholder [header]="true" [lines]="5"></app-placeholder>
+<div class="placeholder-content">
+  <!-- <app-divider  [topTitle]="'Placeholder Component'"></app-divider> -->
+  <app-divider> <!-- Component Divider -->
+    Placeholder Component
+  </app-divider>
+  <app-placeholder [header]="true" [lines]="5"></app-placeholder> <!-- Component Placeholder -->
+</div>
+<div class="segment-content" style="margin-top: 20px;">
+  <!-- <app-divider  [topTitle]="'Segment Component'"></app-divider> -->
+  <app-divider> <!-- Component Divider -->
+    Segment Content
+  </app-divider>
+  <app-segment> <!-- Component Segment -->
+    <header>
+      <i class="pdf file outline icon"></i>
+        No documents are listed for this customer.
+    </header>
+    <div id="content-button">
+      <button class="ui primary button">
+        Add Document
+      </button>
+    </div>
+  </app-segment>
+</div>
+

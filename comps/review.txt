@@ -130,4 +130,28 @@ ________________________________________________________________________________
 
  -> Ao invés de utilizar property binds com elementos simples, é possível utilizar
     a diretiva <ng-content /> que irá carregar exatamente o conteúdo especificado
-    no módulo compartilhado. Uma alternativa ao @Input e Bindings.
+    dentro do módulo compartilhado. Uma alternativa ao @Input e Bindings.
+
+  -> a diretiva <ng-content /> Utilizada como slot para components, possui uma Propriedade
+    chamada select. O select selecionada especifico componente a ser renderizado. Por exemplo,
+    existe um component Segment, e esse component precisa receber alguns dados do componente pai,
+    ElementHome. Dentro do ElementHome existirá um <app-segment> que definirá quais informações
+    serão passadas para o component segment. Desta forma, se dentro do <app-segment> existir alguma
+    div, component HTML ou que seja definido for ID, o segmentComponent consegue renderizar facilmente
+    com a propriedade select do ng-content. Suponha que o ElementHome esteja passando para o segmentComponent
+    uma DIV de ID button-content, dentro do segmentComponent existirá um <ng-content> da forma:
+    <ng-content select="#button-content"> de forma a renderizar, no slot a div button-content. Uma vez que
+    a diretiva <ng-content> sem select é um slot default!
+
+
+________________________________________________________________________________
+
+  -> Componentes de tabela reutilizaveis: Passa-se 2 arrays - Data e Header.
+    O Data - Possui todas as informações de dados.
+    O Header - Possui as keys que serão definidas nas colunas da tabela.
+      - Utilizar a diretiva *ngFor="let header of headers" {{ header.label }}
+
+
+OBS. Quando utilizando Componente Pai e Componente filho, os dados devem sempre serem
+definidos/aquisitados pelo pai e serem passados para os filhos. O único papel do filho é
+servir como template.
