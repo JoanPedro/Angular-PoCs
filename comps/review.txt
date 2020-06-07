@@ -90,18 +90,19 @@ ________________________________________________________________________________
 
 Lazy loading:
 
-- Entrega de renderização de componentes mais leve. O Servidor só enviar dados do componente
+- Entrega de renderização de componentes mais leve. O Servidor só enviará dados do componente
 necessário e desejado pelo cliente. Muito útil em aplicação mobile, visto que tem condições de
 rede reduzidas.
 - O problema ocorre uma vez que dentro do App.module.ts, no array 'import' ele chega a importar
 todos os componentes que são necessariamente roteados. Desta forma, uma vez que chamado o AppModule
 que é necessariamente o módulo pai, ele carregará todos os importe consigo. Logo, é necessário, para
-o Lazy loading, retirar os modulos importados dentro do array 'import' e realizar uma lógica dentro
-do AppRoutingModule, que segue:
+o Lazy loading, retirar os modulos importados dentro do array 'import' (Não considerando os que não
+preocisão de lógica de roteamento/path. Que são os casos do PageNotFound e Home!) e realizar uma lógica dentro
+de Roteamento que segue:
 
   -> Escolha quais módulos devem ser tratos com Lazy loader;
-  -> Para cada um desses módulos, remova qualquer declaração de importação desses Módulos
-    de qualquer lugar que esteja no projeto, somente existindo em seus próprio Módulo/Componente;
+  -> Para cada um desses módulos, remova qualquer declaração de importação desses Módulos (Como dentro
+  do array de 'import' dentro do AppRoutingModule) de qualquer lugar que esteja no projeto, somente existindo em seus próprio Módulo/Componente;
   -> Em AppRoutingModule, defina a rota em 'routes' array para especificar quando exatamente
     carregar aquele módulo em específico.
   -> Já no seu Módulo de Rotas Lazy Loaded (Módulo de rota do exato componente que está sendo lazy loaded),
@@ -115,8 +116,13 @@ do AppRoutingModule, que segue:
       // acessado a rota '/elements'.
   },
 
+  No Módulo de Rotas Lazy loaded, no exemplo ElementsComponent:
+  { path: '', component: ElementsHomeComponent}.
+
     OBS -> Uma vez que no AppRoutingModule esteja definido o path 'elements', não é recomendado,
       que dentro do Módulo de Rotas do componente que está sendo Lazy Loaded, esteja também um
       path, uma vez que as chamadas são cumulativas. Ficando: localhost:4200/elements/elements. Logo,
       faça com que o Módulo de Rotas do Componente que está sendo Lazy Loaded seja definido o path
       somente como: ''. Vazio!
+
+

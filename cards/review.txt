@@ -8,3 +8,12 @@ como: post.username; post.imageUrl...
 A diretiva não trata somente atribulos, valores estáticos/dinâmicos mas também funções.
 caso: *ngFor="let post of getPosts()" é completamente reconhecido. Uma vez que a função
 getPosts() retorna um array de objetos, cairá no mesmo caso de cima.
+
+A diretiva *ngIf possibilita renderização condicional.
+  -> É necessário que o componente filho tenha no seu arquivo component.ts definido
+    as propriedades de entrada com o @Input(). E, dentro do seu arquivo HTML especificar
+    exatamente onde essa propriedade será tratada; se será em uma div, uma lista, etc.
+    Após isso, o componente filho já estará com setup pronto, restando somente definir
+    no componente pai( onde o componente filho está sendo chamado para ser renderizado )
+    passar exatamente o valor desejado para a propriedade criada pelo @Input. É possível
+    definir também um valor default caso nenhum valor seja passado.
