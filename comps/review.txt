@@ -107,6 +107,7 @@ de Roteamento que segue:
     carregar aquele módulo em específico.
   -> Já no seu Módulo de Rotas Lazy Loaded (Módulo de rota do exato componente que está sendo lazy loaded),
     edite o 'path' para cada rota que será relativa ao 'path' que foi especificado em AppRoutingModule.
+      -> Essa etapa só é possível em 90% dos casos somente se o Módulo tiver um componente home: 'xxxHomeComponent'.
 
   No AppRoutingModule:
   {
@@ -124,7 +125,8 @@ de Roteamento que segue:
       path, uma vez que as chamadas são cumulativas. Ficando: localhost:4200/elements/elements. Logo,
       faça com que o Módulo de Rotas do Componente que está sendo Lazy Loaded seja definido o path
       somente como: ''. Vazio!
-
+    OBS2. É necessário que dentro do módulo gerado (ex. Views) seja criado um ViewsHome (ng g c views/ViewsHome),
+      para que seja manipulado os arquivos estáticos.
 
 ________________________________________________________________________________
 

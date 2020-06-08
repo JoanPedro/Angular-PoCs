@@ -1,0 +1,16 @@
+<div class="ui item">
+  <div class="item" *ngFor="let item of items"
+    style="display: flex; align-items: center;">
+    <div class="image">
+      <img [src]="item.image" />
+    </div>
+    <div class="content">
+      <div class="header">
+        <h2> {{ item.title }}</h2>
+      </div>
+      <div class="description">
+        <h5>{{ item.description }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
