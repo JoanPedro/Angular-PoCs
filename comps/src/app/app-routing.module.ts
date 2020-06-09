@@ -18,7 +18,12 @@ const routes: Routes = [
   {
     path: 'views',
     loadChildren: () => import('./views/views.module')
-      .then(module => module.ViewsModule)
+      .then(module => module.ViewsModule),
+  },
+  {
+    path: 'mods',
+    loadChildren: () => import('./mods/mods.module')
+      .then(module => module.ModsModule),
   },
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },

@@ -157,3 +157,23 @@ ________________________________________________________________________________
 OBS. Quando utilizando Componente Pai e Componente filho, os dados devem sempre serem
 definidos/aquisitados pelo pai e serem passados para os filhos. O único papel do filho é
 servir como template.
+
+
+________________________________________________________________________________
+
+-> Resumo: Roteamento avançado.
+
+Considerando que existe o AppModule e um Módulo Elements criado pelo (ng g m Elements):
+
+1. Adicionar o link ao 'header' de navegação no AppComponent.html. (Utilizar o
+routerLink para definir a rota, routerLinkActive para ativar o link). Este link
+deve navegar para a rota de 'elements';
+2. Em AppRouting Module.ts, adicionar a regra de Lazy Loading já cida a cima;
+3. Gerar um Componente ElemenetsHomeComponent;
+4. Opcional: O ElementsHome é a visão principal do Módulo, todos components que forem
+gerados a partir deste módulos, devem ser referenciados nesse Html;
+5. Adicionar a regra de roteamento no ElementsRouting Module para mostrar o ElementsHomeComponent;
+6. Mostrar quaisquer outros componentes dentro do Elements html.
+7. Pode-se criar componentes (Widget) para a aplicação geral. Mas, para serem utilizados,
+devem ser IMPORTADOS em todos os módulos que forem precisos, a partir do nameModule.module.ts,
+array de imports.
