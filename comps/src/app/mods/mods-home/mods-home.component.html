@@ -1,2 +1,24 @@
 <app-divider> Modal Component </app-divider>
-<app-modal></app-modal>
+<button (click)="onClick()">Show Modal</button>
+<app-modal (close)="onClick()" *ngIf="modalOpen" >
+  <p id="content">
+    Some Content for the modal windows should go right here!
+  </p>
+  <h1 id="header">
+    MODAL!
+  </h1>
+  <p id="button-msg">
+    OK
+  </p>
+  <div modalFooter style="display: flex; flex-direction: column;">
+    <button (click)="onClick()" class="ui button" >
+      Close Me!
+    </button>
+  </div>
+</app-modal>
+
+<div style="margin-top: 20px;">
+  <app-divider> Accordion Component </app-divider>
+  <app-accordion></app-accordion>
+</div>
+

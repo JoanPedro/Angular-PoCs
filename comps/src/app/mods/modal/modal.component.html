@@ -1,16 +1,19 @@
-<div class="ui dimmer visible active">
-  <div class="ui modal visible active">
-    <i class="close icon"></i>
+<div (click)="onCloseClick()" class="ui dimmer visible active">
+  <div (click)="$event.stopPropagation()" class="ui modal visible active">
+    <i (click)="onCloseClick()" class="close icon"></i>
     <div class="header">
-      MODAL!
+      <ng-content select="#header"></ng-content>
     </div>
     <div class="content">
-      <p>
-        Some Content for the modal windows should go right here!
-      </p>
+      <ng-content select="#content"></ng-content>
     </div>
     <div class="actions">
-      <button class="ui button" >OK</button>
+      <button (click)="onCloseClick()" class="ui button" >
+        <ng-content select="#button-msg"></ng-content>
+      </button>
+    </div>
+    <div class="actions">
+      <ng-content select="[modalFooter]"></ng-content>
     </div>
   </div>
 </div>

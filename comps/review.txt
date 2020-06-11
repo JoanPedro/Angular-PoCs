@@ -177,3 +177,29 @@ gerados a partir deste módulos, devem ser referenciados nesse Html;
 7. Pode-se criar componentes (Widget) para a aplicação geral. Mas, para serem utilizados,
 devem ser IMPORTADOS em todos os módulos que forem precisos, a partir do nameModule.module.ts,
 array de imports.
+
+________________________________________________________________________________
+
+Comunicação de Filho para Pai:
+
+  - Utiliza-se no FILHO os atributos EventEmmiter e Output do angular.
+    Ex. @Output() close = new EventEmitter;
+    Ou seja, o filho estará exportando como saída (Output) o evento de close definido,
+    que está sendo utilizado em diversos elementos do DOM.
+  -> Estratégia bastante utilizada para um Modal:
+    1. Define o Componente Home e Component Modal;
+    2. Importar o componente modal para dentro do Home e permite sua visualização;
+    3. Dentro do modal, define algumas especificas ações de fechamento; como por exemplo:
+      clicar fora do modal, clicar no ok do modal e clicar no x do modal.
+    4. Definidas as ações (São elementos do DOM) deve-se definir uma função capturando
+    o evento de click;
+    5. Dentro do modal.ts, define-se Output e EventEmitter de forma que, considerando
+    o evento (close) como saída, deverá ser chamado pelo componente pai (Home) e definido
+    a ação de fechamento. <app-modal (close)="closeOnClick()" ></app-modal>. De forma que,
+    a função closeOnClick está definida no elemento PAI (HOME), e está passando para a saída
+    definida no componente filho. Desta forma, todos os elementos da DOM definidos no filho
+    que são tratados com o Output CLOSE, receberão a função de closeOnClick, que são: o botão
+    de X, o botão de OK e clicar fora do Modal.
+      OBS.5: Deve-se ficar atento para a propagação do evento de Click, que tornará todo modal
+      fechado em qualquer que seja o lugar clicado. Previne-se com o (click)="$event.stopPropagation" no
+      penúltimo div do elemento modal.
