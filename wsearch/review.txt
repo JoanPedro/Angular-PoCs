@@ -12,3 +12,37 @@ Uma search bar -
 2. Deve-se acoplar o input à tag de Form, que ao pressionar 'enter' será automaticamente
   reconhecido como um 'submit' no formulário; devido a função definida atrelado ao
   event binding de submit do formulário.
+
+  * Obs. Por padrão, o navegador irá 'submeter' o formulário e realizar um flash/refresh
+  da página. Para que isso não ocorra, deve-se passar '$event' para a função definida
+  que está atrelada ao evento de submit pelo EVENT BINDING (submit), como por exemplo
+  (submit) = "onSubmitForm($event)", e, dentro do component.ts a função deve-se
+  receber um (event: any), e realizar um preventDefault do evento:
+  -> onSubmitForm(event: any) { event.preventDefault(); }.
+
+3. Deve fazer com que o componente filho (Search) transmita para o componente pai,
+  que no caso é o AppComponent. Esta situação é feita com 3 passos:
+    1. Importa as classes de EventEmitter e Output;
+    2. Define uma nova variável utilizando as 2 classes importadas:
+      @Output() submitted = new EventEmitter<string>() -> O que significa que a
+      variável submitted será importada como um Emissor de evento com um parâmetro
+      no formato de string;
+    3. Dentro da função definida onSubmitForm(event: any), passa a variável que será
+    exportada como um EventEmitter (submitted) e, qual a outra variável que ele irá
+    emitir (term):
+      this.submitted.emit(this.term) -> O que significa que a variável 'term' que é
+      a responsável por ter armazenada as entradas do usuário (Teclas digitadas) será
+      emitida pelo evento de exportação submitted.
+4. Diate disto, agora o Componente que tem a variável submitted definida, definiu-se
+  submitted como um Evento nativo, ou seja, ele pode ser acessado como um EVENT BINDING!
+    Por exemplo: <input (input)="onInput($event.target.value)"> -> O Elemento HTML possui
+    um evento chamado Input nativo. Da mesma forma agora, o componente que possui
+    o 'submitted' possui também o evento 'submitted' nativo e pode ser acessado da
+    mesma forma: <app-search-bar (submited)="algumaCoisa"></app-search-bar>.
+    *OBS: Como no caso de eventos nativos do HTML, é passado como parâmetro um $event, ele
+    dentro do component.ts é acessado como onSubmit(event: any), o submitted é diferente,
+    ele será passado também como um $event, porém, como foi definito que o EventEmitter
+    seria uma string Genérica (EventEmitter<string>), faz com que no component.ts ele possa
+    ser definido como por exemplo onTerm(term: string) ou invés de onTerm(term: any). Neste
+    caso, como foi-se definido também a emissão do 'term', pode-se deixar explicito ao invés de
+    utilizar onTerm(event: string)!
