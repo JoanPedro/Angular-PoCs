@@ -1,0 +1,14 @@
+Uma search bar -
+
+1. O usuário digita alguma coisa no campo de input;
+  1.1 - Define-se uma varíavel para armazenar cada entrada de dados;
+  1.2 - Define-se uma função que irá monitorar o evento de target.value que a cada
+    tecla digitada irá disparar o evento manipulador;
+  1.3 - A Função de monitoramento irá atribuir os valores de entrada no campo de
+    input à variável de armazenamento.
+  1.4 - Quando o usuário pressiona a tecla 'enter' disparar o evento de busca;
+  1.5 - Desta forma, pega-se a propriedade armazenada e envia de volta para o AppComponent.
+
+2. Deve-se acoplar o input à tag de Form, que ao pressionar 'enter' será automaticamente
+  reconhecido como um 'submit' no formulário; devido a função definida atrelado ao
+  event binding de submit do formulário.
