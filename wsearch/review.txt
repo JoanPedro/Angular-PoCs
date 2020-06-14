@@ -46,3 +46,10 @@ Uma search bar -
     ser definido como por exemplo onTerm(term: string) ou invés de onTerm(term: any). Neste
     caso, como foi-se definido também a emissão do 'term', pode-se deixar explicito ao invés de
     utilizar onTerm(event: string)!
+5. Ao criar um Serviço, é necessário importar ele dentro component.ts do Componente desejado,
+  dentro do contructor, que é o responsável por inicializar todo o contexto e variável.
+    *OBS: Se não for utilizar a Class do Service, não é necessário definir ela dentro do
+    constructor, somente em seu parâmetro:
+      -> contructor(private wikipediaService: WikipediaService) {}; onde WikipediaService é
+      exatamente o Service criado, então, você estar criando uma nova instância do Service
+      chamado de wikipediaService de forma privada, somente acessada por aquele componente.

@@ -1,3 +1,4 @@
+import { WikipediaService } from './wikipedia.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,8 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(private wikipedia: WikipediaService) {
+  }
+
   onTerm(term: string) {
-    console.log('I am a app and here is the term: ', term)
+    const results = this.wikipedia.search(term);
+    console.log(results)
   }
 
 }
