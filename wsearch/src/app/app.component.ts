@@ -14,7 +14,7 @@ export class AppComponent {
 
   onTerm(term: string) {
     this.wikipedia.search(term)
-      .subscribe(response => {
+      .subscribe((response: any) => {
         this.pages = response.query.search;
       })
   }
