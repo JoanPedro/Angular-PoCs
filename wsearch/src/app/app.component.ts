@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  pages = [];
 
   constructor(private wikipedia: WikipediaService) {
   }
@@ -14,7 +15,7 @@ export class AppComponent {
   onTerm(term: string) {
     this.wikipedia.search(term)
       .subscribe(response => {
-        console.log(response)
+        this.pages = response.query.search;
       })
   }
 

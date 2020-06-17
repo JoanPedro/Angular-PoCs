@@ -53,3 +53,24 @@ Uma search bar -
       -> contructor(private wikipediaService: WikipediaService) {}; onde WikipediaService é
       exatamente o Service criado, então, você estar criando uma nova instância do Service
       chamado de wikipediaService de forma privada, somente acessada por aquele componente.
+      *OBS: constructor(private wikipediaService: WikipediaService) é a mesma coisa que dizer:
+        constructor(wikipediaService) {
+          this.wikipediaService = WikipediaService
+        }
+6. Dentro do service devem existir métodos que poderão ser utilizados em outros componentes.
+  Um service nada mais é que um 'helper' para os componentes, que podem ser reutilizados e
+  abstraídos de maneira a isolar suas funcionalidades de acordo com os princípios do SOLID.
+
+--------------------------------------------------------------------------------
+-> Setting Input binding (Comunicação de Componente Pai para Filho)
+
+  1. No template (HTML) do componente pai, encontre onde o componente filho foi criado;
+  2. Especifique/Defina qual será o nome da propriedade que será utilizada para
+    estabelecer a comunicação entre pai para filho;
+  3. Adicione um novo 'binding' para o componente filho, especificando o dado que
+    gostaria que fosse passado para baixo (Para o componente filho!);
+  4. No arquivo de classes do componente filho, adicione uma propriedade de input
+    (@Input). Isto diz que o componente filho espera que o pai provindencie/forneça
+    um valor para esta propriedade (Declarada com o @Input);
+  5. No template (HTML) do componente filho, referencie esta propriedade de @Input definida.
+
