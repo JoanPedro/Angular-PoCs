@@ -10,4 +10,4 @@
 
 [Complexs](https://github.com/JoanPedro/Angular-PoCs/tree/master/comps)
 
-[API WIkipedia](https://github.com/JoanPedro/Angular-PoCs/tree/master/wsearch)
+[API Wikipedia](https://github.com/JoanPedro/Angular-PoCs/tree/master/wsearch)
