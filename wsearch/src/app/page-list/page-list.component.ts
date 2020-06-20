@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PageListComponent implements OnInit {
 
   @Input() pages = [];
+  xss = `<IMG SRC="javascript:alert('XSS');" >`
 
   constructor() { }
 
