@@ -9,3 +9,5 @@
 [Pages](https://github.com/JoanPedro/Angular-PoCs/tree/master/pages)
 
 [Complexs](https://github.com/JoanPedro/Angular-PoCs/tree/master/comps)
+
+[API WIkipedia](https://github.com/JoanPedro/Angular-PoCs/tree/master/wsearch)
