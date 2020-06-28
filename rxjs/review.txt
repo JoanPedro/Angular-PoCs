@@ -1,0 +1,116 @@
+## Trabalhando com RxJS - Observables (rxjs.dev)
+
+- Tirando como exemplo o processamento de um INPUT:
+
+-- Sem Observables:
+
+  1. Source of Events: Input Element;
+  2. Processing Pipeline: (Step by Step processing)
+     1. Get Value throught event object;
+     2. Parse a number out of the value;
+     3. Inspect the number, throw error it is not a number --> Processing Complete
+     4. Hand off the number to something to 'consume' it;
+  3. Function to use this value.
+
+-- Com Observables:
+
+  1. Observable: Input Element; -> Going to emit some kind of event;
+  2. Pipe: Operators (Going to do some processing on it and then take whatever value it has produced and send it on to the next operators then to the next, next ...)
+     1. Get Value throught event object; Operator (1) 
+     2. Parse a number out of the value; Operator (2)
+     3. Inspect the number, throw error it is not a number; Operator (3)
+     4. Hand off the number to something to 'consume' it; Operator (4)
+  3. Observer: 
+     1. On Throws --> Processing Complete;
+     2. On Finish without error --> Function to use this value;
+
+-- Operators:
+
+  1. Functions that do some specific processing on the incoming value;
+  2. We chain together operators to build up a processing pipeline;
+  3. 75% of RxJs is memorizing the different operators;
+  4. There are some very generic operators and some very specific ones;
+  5. For any given problem, you will problaby decide to use one operators, then later, realize you could have more easily used another;
+  6. Almost all documentation around operators is awful;
+  7. Recommendation: Take a look at exactly what value is coming out of your observable, then figure out what operators you need to implement your application.
+
+-- Major Operators Group:
+
+  1. Transform -> Take in value, do some processing, return a new value;
+  2. Filtering -> Modifies the flow of events in a pipe (group then together, pause them, delete them)
+  3. Creation -> Creates a new observable.
+
+Exemplo: Sem Observable
+
+const input = document.querySelector('input'); 
+
+// --> The Observable: Listen the 'input' event of INPUT Element.
+input.addEventListener('input', (event) => {
+
+  // --> Pipe: Operators (1) - Realize individual process steps.
+  let text = event.target.value;
+
+  // --> Pipe: Operators (2) - Realize individual process steps.
+  text = parseInt(text);
+
+  // --> Pipe: Operators (3) - Realize individual process steps.
+  if(NaN(text)){
+    // Observer --> On Throws --> Processing Complete;
+    throw new Error('You must enter a number!')
+  }
+
+  // Observer --> Subscribe 
+  logValue(text)
+})
+
+  // Subscribe --> On Finish without error --> Function to use this value;
+const logValue = (value) => {
+  console.log(`Your value is: ${value}`);
+}
+
+Exemplo: Com Observable
+
+// ------- ** Para Usar o Ambiente Virtual ** ------- //
+
+const input = document.createElement('input');
+const container = document.querySelector('.container');
+
+// Colocando o input dentro de um container para ficar visível no ambiente.
+container.appendChild(input); 
+
+// ----------------------------------------------- //
+// ----------------- OBSERVABLE ------------------ //
+const { fromEvent } = Rx;
+const { map, pluck } = RxOperators;
+
+/* Define um Observable (Passo 1) que irá escutar/monitorar o evento de input do elemento --> HTML INPUT. ($event.target.value) */
+const observable = fromEvent(input, 'input')
+  .pipe( // Conjunto de Operators. Os retornos dos operadores são passados para os próximos.
+    map(event => event.target.value), // Return implicito da arrow function de uma linha.
+      // Ou -> pluck('target', 'value'), mais específicio para o MAP acima.
+    map(value => parseInt(value)), // Return implicito da arrow function de uma linha.
+    map(value => { // Retorno explico, arrow function com mais de uma linha.
+      if(isNaN(value)) {
+        throw new Error('Enter a number'); // Lança uma excessão com uma mensagem.
+      }
+      return value; // Saída do pipeline.
+    })
+  ) // Processment Pipeline
+
+observable.subscribe({
+  next(value) { // Será chamada sempre que um valor for emitido para fora da pipeline.
+    console.log(`Your value is: ${value}`)
+  },
+  error(err) { // Será chamada quando for lançado um excessão e mostrará sua mensagem.
+    console.error('BAD THING HAPPEN!!', err.message) 
+  },
+  complete() {
+
+  }
+}); 
+
+
+// ----------------------------------------------- //
+
+// Específico também para functionamento do ambiente.
+observable;
