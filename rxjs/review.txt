@@ -114,3 +114,22 @@ observable.subscribe({
 
 // Específico também para functionamento do ambiente.
 observable;
+
+
+
+___________ // ---------------- // ___________
+
+- Unicast Observables (Bad for Multiples Request...)
+  [Separete set of values for each observer]
+
+  1. Emit a separate set of values for each observer that subscribes;
+  2. All of the Operators in a pipe will be executed for each separete observer that subscribes
+  3. Can easy lead to bad behavior.
+
+- Multicast Observables 
+  [One set of values for all observer]
+
+  1. Emit a single set of values for all observers that subscribe;
+  2. All of the operators in a pipe are executed just once;
+  3. The observable will be 'reset' if it gets 'completed' or 'errored' then another subscriber is added;
+  4. Quicly returns into issues with a later subscriber not seeing early events.
